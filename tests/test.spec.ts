@@ -33,6 +33,8 @@ test('Talent Hire - Complete Flow', async () => {
   });
   
   const page = context.pages()[0] || await context.newPage();
+
+  
   
   // Navigate to the application
   await safeAction(page, async () => {
