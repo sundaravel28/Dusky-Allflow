@@ -148,7 +148,7 @@ test('Talent Hire - Complete Flow', async () => {
   
   // Past Interviews
   await safeAction(page, async () => {
-    await page.getByRole('button', { name: 'Past Interviews (138)' }).click();
+    await page.getByRole('button').filter({ hasText: 'Past Interviews' }).click();
   }, 'Click Past Interviews button');
   
   await safeAction(page, async () => {
