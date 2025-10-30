@@ -155,7 +155,7 @@ test('Talent Hire - Interview Flow', async () => {
   }, 'Click Angular option');
 
   await safeAction(page, async () => {
-    await page.getByRole('button').nth(5).click();
+    await page.getByRole('button').nth(3).click();
   }, 'Click tech stack action button');
 
   // Schedule Management

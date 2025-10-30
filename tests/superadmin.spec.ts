@@ -4,7 +4,7 @@ import { test, expect, chromium, Page } from '@playwright/test';
 test.setTimeout(900000); // 15 minutes
 
 // User Data Directory for your custom Chrome profile
-const userDataDir = 'C:\\Users\\sundaravel.v\\Documents\\All Flow - Dusky\\C\\Users\\Windows\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 1';
+const userDataDir = 'C:\\Users\\sundaravel.v\\Documents\\All Flow - Dusky\\C\\Users\\Windows\\AppData\\Local\\Google\\Chrome\\User Data\\Profile 1\\Profile 1';
 
 // Common wait time (in milliseconds)
 const WAIT_TIME = 2000; // 2 seconds
@@ -182,8 +182,9 @@ test('Talent Hire - Complete Flow', async () => {
   }, 'Select AWS tech stack');
   
   await safeAction(page, async () => {
-    await page.locator('div:nth-child(6) > .hover\\:bg-blue-700').click();
+    await page.locator('div:nth-child(6) > .hover\\:bg-purple-700').click();
   }, 'Click tech stack option');
+  
   
   // Referrals Section
   console.log('Testing Referrals section...');
@@ -203,7 +204,7 @@ test('Talent Hire - Complete Flow', async () => {
   
   // Sort functionality
   await safeAction(page, async () => {
-    await page.getByRole('button', { name: 'Sort Sort' }).click();
+    await page.getByRole('button', { name: 'Sort' }).click();
   }, 'Click Sort button');
   
   await safeAction(page, async () => {
@@ -254,6 +255,99 @@ test('Talent Hire - Complete Flow', async () => {
   await safeAction(page, async () => {
     await page.locator('.fixed.inset-0').click();
   }, 'Close filter modal');
+
+  
+  await safeAction(page, async () => {
+    await page.getByRole('link', { name: 'Templates' }).click();
+  }, 'Open Templates');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: 'Sort Sort' }).click();
+  }, 'Open Sort menu');
+  
+  await safeAction(page, async () => {
+    await page.getByTitle('Old to New').click();
+  }, 'Sort by Old to New');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: 'Sort Sort' }).click();
+  }, 'Open Sort menu');
+  
+  await safeAction(page, async () => {
+    await page.getByTitle('New to Old').click();
+  }, 'Sort by New to Old');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: 'Sort Sort' }).click();
+  }, 'Open Sort menu');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: '↑' }).first().click();
+  }, 'Apply ascending sort (Template Name)');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: 'Sort Sort' }).click();
+  }, 'Open Sort menu');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: '↓' }).first().click();
+  }, 'Apply descending sort (Template Name)');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: 'Sort Sort' }).click();
+  }, 'Open Sort menu');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: '↑' }).nth(2).click();
+  }, 'Apply ascending sort (some field)');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: 'Sort Sort' }).click();
+  }, 'Open Sort menu');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: '↓' }).nth(2).click();
+  }, 'Apply descending sort (some field)');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: 'Sort Sort' }).click();
+  }, 'Open Sort menu');
+  
+  await safeAction(page, async () => {
+    await page.getByTitle('Entry → Mid → Executive').click();
+  }, 'Sort by Level Entry→Mid→Executive');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: 'Sort Sort' }).click();
+  }, 'Open Sort menu');
+  
+  await safeAction(page, async () => {
+    await page.getByTitle('Executive → Mid → Entry').click();
+  }, 'Sort by Level Executive→Mid→Entry');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: 'Sort Sort' }).click();
+  }, 'Open Sort menu');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: '↑' }).nth(4).click();
+  }, 'Apply ascending sort (another field)');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: 'Sort Sort' }).click();
+  }, 'Open Sort menu');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: '↓' }).nth(4).click();
+  }, 'Apply descending sort (another field)');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: 'Sort Sort' }).click();
+  }, 'Open Sort menu');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: 'Clear Sort' }).click();
+  }, 'Clear all sorts');
   
   // Candidates Section
   console.log('Testing Candidates section...');
@@ -264,6 +358,10 @@ test('Talent Hire - Complete Flow', async () => {
   // Test different candidate statuses
   await safeAction(page, async () => {
     await page.getByRole('button').filter({ hasText: 'In Applicants' }).click();
+  }, 'Click In Applicants tab');
+
+  await safeAction(page, async () => {
+    await page.getByRole('button').filter({ hasText: 'All' }).click();
   }, 'Click In Applicants tab');
   
   await safeAction(page, async () => {
@@ -300,6 +398,80 @@ test('Talent Hire - Complete Flow', async () => {
     await page.getByRole('button', { name: 'Close filters' }).click();
   }, 'Close candidate filters');
   
+  // Reports
+  await safeAction(page, async () => {
+    await page.getByRole('link', { name: 'Reports' }).click();
+  }, 'Open Reports');
+  
+  await safeAction(page, async () => {
+    await page.getByLabel('Status:').selectOption('Paused');
+  }, 'Select status Paused');
+  
+  await safeAction(page, async () => {
+    await page.goto('https://talent-qa.ideas2it.com/dashboard?status=Paused');
+  }, 'Navigate to Paused dashboard');
+  
+  await safeAction(page, async () => {
+    await page.getByLabel('Status:').selectOption('Closed');
+  }, 'Select status Closed');
+  
+  await safeAction(page, async () => {
+    await page.goto('https://talent-qa.ideas2it.com/dashboard?status=Closed');
+  }, 'Navigate to Closed dashboard');
+  
+  await safeAction(page, async () => {
+    await page.getByLabel('Status:').selectOption('Published');
+  }, 'Select status Published');
+  
+  await safeAction(page, async () => {
+    await page.goto('https://talent-qa.ideas2it.com/dashboard');
+  }, 'Navigate to Published dashboard');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: 'Grid View' }).click();
+  }, 'Switch to Grid View');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: 'List View' }).click();
+  }, 'Switch to List View');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('textbox', { name: 'Search job roles...' }).click();
+  }, 'Focus job role search');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('textbox', { name: 'Search job roles...' }).fill('QA');
+  }, 'Search for QA');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('cell', { name: 'Front End QA' }).click();
+  }, 'Open Front End QA report');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('heading', { name: 'Process vs Channel' }).click();
+  }, 'Open Process vs Channel');
+  
+  await safeAction(page, async () => {
+    await page.locator('div').filter({ hasText: /^Process vs Channel$/ }).click();
+  }, 'Focus Process vs Channel chart');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('cell', { name: 'Total', exact: true }).click();
+  }, 'Click Total cell');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('heading', { name: 'Channel Funnel Analysis' }).click();
+  }, 'Open Channel Funnel Analysis');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: 'arrow-left Back' }).click();
+  }, 'Back from report');
+  
+  await safeAction(page, async () => {
+    await page.getByRole('button', { name: 'Export' }).click();
+    await page.waitForTimeout(120000); // 2 minutes
+  }, 'Export report');
+
   // Return to Jobs
   await safeAction(page, async () => {
     await page.getByRole('link', { name: 'Jobs' }).click();
