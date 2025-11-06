@@ -26,5 +26,11 @@ pipeline {
                 bat 'npx playwright test tests/recruiter.spec.ts'
             }
         }
+
+        stage('Run Hiring Manager Test') {
+            steps {
+                bat 'npx playwright test tests/hiringmanager.spec.ts'
+            }
+        }
     }
 }
