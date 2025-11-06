@@ -20,5 +20,11 @@ pipeline {
                 bat 'npx playwright test tests/superadmin.spec.ts'
             }
         }
+
+        stage('Run Recruiter Test') {
+            steps {
+                bat 'npx playwright test tests/recruiter.spec.ts'
+            }
+        }
     }
 }
