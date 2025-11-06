@@ -15,10 +15,6 @@ pipeline {
             }
         }
 
-<<<<<<< HEAD:Jenkinsfile
-
-=======
->>>>>>> 1634153 (superadmin report changes):jenkinsfile
         stage('Run SuperAdmin Test') {
             steps {
                 bat 'npx playwright test tests/superadmin.spec.ts'
