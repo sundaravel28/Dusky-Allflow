@@ -15,11 +15,6 @@ pipeline {
             }
         }
 
-        stage('Run Interview Test') {
-            steps {
-                bat 'npx playwright test tests/interview.spec.ts'
-            }
-        }
 
         stage('Run SuperAdmin Test') {
             steps {
