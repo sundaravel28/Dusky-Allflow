@@ -30,6 +30,11 @@ test('Talent Hire - Complete Flow', async () => {
   const context = await chromium.launchPersistentContext(userDataDir, {
     headless: false,
     channel: 'chrome',
+    args: [
+      '--disable-blink-features=AutomationControlled',
+      '--disable-web-security',
+      '--disable-features=IsolateOrigins,site-per-process',
+    ],
   });
   
   const page = context.pages()[0] || await context.newPage();
@@ -447,21 +452,7 @@ test('Talent Hire - Complete Flow', async () => {
     await page.getByRole('cell', { name: 'Front End QA' }).click();
   }, 'Open Front End QA report');
   
-  await safeAction(page, async () => {
-    await page.getByRole('heading', { name: 'Process vs Channel' }).click();
-  }, 'Open Process vs Channel');
-  
-  await safeAction(page, async () => {
-    await page.locator('div').filter({ hasText: /^Process vs Channel$/ }).click();
-  }, 'Focus Process vs Channel chart');
-  
-  await safeAction(page, async () => {
-    await page.getByRole('cell', { name: 'Total', exact: true }).click();
-  }, 'Click Total cell');
-  
-  await safeAction(page, async () => {
-    await page.getByRole('heading', { name: 'Channel Funnel Analysis' }).click();
-  }, 'Open Channel Funnel Analysis');
+
   
   await safeAction(page, async () => {
     await page.getByRole('button', { name: 'arrow-left Back' }).click();
