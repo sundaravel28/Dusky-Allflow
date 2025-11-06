@@ -38,7 +38,7 @@ test('Talent Hire - Interview Flow', async () => {
   
   // Navigate to the application
   await safeAction(page, async () => {
-    await page.goto('https://talent-qa.ideas2it.com/jobs');
+    await page.goto('https://talent-qa.ideas2it.com/');
     await page.waitForLoadState('networkidle');
   }, 'Navigate to application');
   
