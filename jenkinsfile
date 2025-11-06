@@ -10,20 +10,21 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat 'npm install'
+                bat 'npm ci'
+                bat 'npx playwright install --with-deps'
             }
         }
 
-        stage('Run Tests') {
+        stage('Run Interview Test') {
             steps {
-                bat 'npx playwright test'   // or your test command
+                bat 'npx playwright test tests/interview.spec.ts'
             }
         }
-    }
 
-    post {
-        always {
-            echo 'Build finished.'
+        stage('Run SuperAdmin Test') {
+            steps {
+                bat 'npx playwright test tests/superadmin.spec.ts'
+            }
         }
     }
 }
